@@ -5,7 +5,7 @@
         <!-- Brand -->
         <div class="lg:col-span-2">
           <h3 class="text-lg font-bold tracking-tight mb-3">
-            {{ content?.footer?.logo || 'DevArchitect' }}
+            {{ content?.footer?.logo || 'rancang.dev' }}
           </h3>
           <p class="text-sm text-surface-400 max-w-xs leading-relaxed">
             {{ content?.footer?.copyright || '' }}

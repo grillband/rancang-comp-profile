@@ -1,3 +1,6 @@
+import { writeFile, readFile, mkdir } from 'node:fs/promises'
+import { join } from 'node:path'
+
 export default defineEventHandler(async (event) => {
   const session = getCookie(event, 'admin-session')
   if (session !== 'authenticated') {
@@ -6,6 +9,7 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody(event)
 
+  // Cloudflare Workers: use KV
   try {
     const env = event.req?.runtime?.cloudflare?.env
     if (env?.CONTENT_KV) {
@@ -14,5 +18,13 @@ export default defineEventHandler(async (event) => {
     }
   } catch {}
 
-  throw createError({ statusCode: 500, message: 'Storage not available' })
+  // Local / Node.js: write to file
+  try {
+    const dataDir = join(process.cwd(), 'server', 'data')
+    await mkdir(dataDir, { recursive: true })
+    await writeFile(join(dataDir, 'content.json'), JSON.stringify(body, null, 2), 'utf-8')
+    return { success: true }
+  } catch (e) {
+    throw createError({ statusCode: 500, message: 'Failed to save content' })
+  }
 })

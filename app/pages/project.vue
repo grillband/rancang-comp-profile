@@ -58,7 +58,7 @@
 const { data: content } = await useFetch('/api/content')
 
 useHead({
-  title: 'Our Projects — DevArchitect',
+  title: 'Our Projects — rancang.dev',
 })
 
 onMounted(() => {

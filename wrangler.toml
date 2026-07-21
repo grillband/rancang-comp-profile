@@ -1,7 +1,12 @@
-name = "devarchitect"
+name = "rancang"
 main = ".output/server/index.mjs"
 compatibility_date = "2025-07-15"
 compatibility_flags = ["nodejs_compat"]
+
+routes = [
+  { pattern = "rancang.dev", zone_name = "rancang.dev" },
+  { pattern = "*.rancang.dev", zone_name = "rancang.dev" },
+]
 
 [assets]
 directory = ".output/public"
@@ -15,7 +20,7 @@ id = "placeholder-kv-namespace-id"
 
 # R2 bucket for file uploads
 # Replace 'bucket_name' with your actual bucket name after running:
-#   wrangler r2 bucket create devarchitect-uploads
+#   wrangler r2 bucket create rancang-uploads
 [[r2_buckets]]
 binding = "UPLOADS_R2"
-bucket_name = "devarchitect-uploads"
+bucket_name = "rancang-uploads"

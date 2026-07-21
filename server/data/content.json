@@ -1,6 +1,6 @@
 {
   "nav": {
-    "logo": "Rancang.dev",
+    "logo": "rancang.dev",
     "items": [
       "Services",
       "Portfolio",
@@ -90,8 +90,8 @@
     "submitText": "Send a Message"
   },
   "footer": {
-    "logo": "DevArchitect",
-    "copyright": "© 2024 DevArchitect Solutions. All rights reserved. Built for technical mastery.",
+    "logo": "rancang.dev",
+    "copyright": "© 2024 rancang.dev. All rights reserved. Built for technical mastery.",
     "columns": [
       {
         "title": "Legal",

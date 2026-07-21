@@ -5,7 +5,7 @@
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-2.5 group">
           <img src="/logo.svg" alt="Logo" class="h-10 w-auto transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105" />
-          <span class="text-lg font-bold text-surface-950 tracking-tight">{{ content?.nav?.logo || 'DevArchitect' }}</span>
+          <span class="text-lg font-bold text-surface-950 tracking-tight">{{ content?.nav?.logo || 'rancang.dev' }}</span>
         </NuxtLink>
 
         <!-- Desktop Nav -->
