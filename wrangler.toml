@@ -1,0 +1,21 @@
+name = "devarchitect"
+main = ".output/server/index.mjs"
+compatibility_date = "2025-07-15"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = ".output/public"
+
+# KV namespace for content storage
+# Replace 'id' with your actual KV namespace ID after running:
+#   wrangler kv namespace create CONTENT_KV
+[[kv_namespaces]]
+binding = "CONTENT_KV"
+id = "placeholder-kv-namespace-id"
+
+# R2 bucket for file uploads
+# Replace 'bucket_name' with your actual bucket name after running:
+#   wrangler r2 bucket create devarchitect-uploads
+[[r2_buckets]]
+binding = "UPLOADS_R2"
+bucket_name = "devarchitect-uploads"

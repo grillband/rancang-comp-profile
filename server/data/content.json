@@ -1,0 +1,113 @@
+{
+  "nav": {
+    "logo": "Rancang.dev",
+    "items": [
+      "Services",
+      "Portfolio",
+      "Team",
+      "Contact"
+    ],
+    "cta": "Get Started"
+  },
+  "hero": {
+    "title": "Engineering Your Digital Future",
+    "subtitle": "We are a premier software development house dedicated to technical mastery, architectural integrity, and forward-thinking innovation. We don't just write code; we build scalable digital ecosystems.",
+    "primaryButton": "View Portfolio",
+    "secondaryButton": "Let's Talk"
+  },
+  "services": {
+    "heading": "Core Capabilities",
+    "subheading": "Architecting robust solutions for complex business challenges.",
+    "items": [
+      {
+        "icon": "mdi:monitor-dashboard",
+        "title": "Custom Software",
+        "description": "Bespoke enterprise applications engineered from the ground up to solve your unique operational bottlenecks."
+      },
+      {
+        "icon": "mdi:cloud-outline",
+        "title": "Cloud Architecture",
+        "description": "Scalable, resilient cloud infrastructure deployments utilizing AWS, Azure, and Google Cloud Platform."
+      },
+      {
+        "icon": "mdi:cellphone",
+        "title": "Mobile Innovation",
+        "description": "High-performance native and cross-platform mobile experiences designed for maximum user engagement."
+      }
+    ]
+  },
+  "projects": {
+    "heading": "Past Projects",
+    "subheading": "A selection of our technical achievements.",
+    "items": [
+      {
+        "image": "/uploads/fintech-dashboard.webp",
+        "tags": [
+          "React",
+          "Node.js"
+        ],
+        "title": "Fintech Dashboard",
+        "description": "A high-frequency trading interface built for institutional investors, processing millions of transactions per second with sub-millisecond latency."
+      },
+      {
+        "image": "/uploads/healthtech-app.webp",
+        "tags": [
+          "Swift",
+          "Kotlin",
+          "GCP"
+        ],
+        "title": "HealthTech App",
+        "description": "A secure, HIPAA-compliant patient management system providing real-time telemetry data to healthcare professionals globally."
+      }
+    ]
+  },
+  "stats": {
+    "items": [
+      {
+        "value": "150+",
+        "label": "PROJECTS DELIVERED"
+      },
+      {
+        "value": "50+",
+        "label": "EXPERT ENGINEERS"
+      },
+      {
+        "value": "98%",
+        "label": "CLIENT SATISFACTION"
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Get in Touch",
+    "subheading": "Ready to start your next architectural masterwork? Reach out to our engineering team.",
+    "email": "hello@devarchitectsolutions.com",
+    "address": "1380 Tech Boulevard, Suite 400\nSan Francisco, CA 94107",
+    "formFields": [
+      "Name",
+      "Email",
+      "Message"
+    ],
+    "submitText": "Send a Message"
+  },
+  "footer": {
+    "logo": "DevArchitect",
+    "copyright": "© 2024 DevArchitect Solutions. All rights reserved. Built for technical mastery.",
+    "columns": [
+      {
+        "title": "Legal",
+        "links": [
+          "Privacy Policy",
+          "Terms of Service",
+          "Cookie Policy"
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          "Career",
+          "Blog"
+        ]
+      }
+    ]
+  }
+}
