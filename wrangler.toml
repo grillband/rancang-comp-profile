@@ -4,12 +4,10 @@ compatibility_flags = ["nodejs_compat"]
 
 pages_build_output_dir = "dist"
 
-# KV namespace for content storage
 [[kv_namespaces]]
 binding = "CONTENT_KV"
 id = "a992842f2531437ea6d08e3dff284ecd"
 
-# R2 bucket for file uploads
 [[r2_buckets]]
 binding = "UPLOADS_R2"
 bucket_name = "rancang-uploads"
