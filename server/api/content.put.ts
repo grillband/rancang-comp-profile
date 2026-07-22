@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
 
   // Cloudflare Workers: use KV
   try {
-    const env = event.req?.runtime?.cloudflare?.env
+    const env = event.context?.cloudflare?.env ?? process.env
     if (env?.CONTENT_KV) {
       await env.CONTENT_KV.put('content', JSON.stringify(body))
       return { success: true }

@@ -2,7 +2,7 @@ import defaultContent from '../data/content.json'
 
 export default defineEventHandler(async (event) => {
   try {
-    const env = event.req?.runtime?.cloudflare?.env
+    const env = event.context?.cloudflare?.env ?? process.env
     if (env?.CONTENT_KV) {
       const data = await env.CONTENT_KV.get('content', { type: 'json' })
       if (data) return data

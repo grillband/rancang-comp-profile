@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
 
   // Cloudflare Workers: use R2
   try {
-    const env = event.req?.runtime?.cloudflare?.env
+    const env = event.context?.cloudflare?.env ?? process.env
     if (env?.UPLOADS_R2) {
       await env.UPLOADS_R2.put(finalName, file.data, {
         httpMetadata: { contentType: file.type },

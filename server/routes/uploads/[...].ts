@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
   const path = event.path.replace('/uploads/', '')
 
   try {
-    const env = event.req?.runtime?.cloudflare?.env
+    const env = event.context?.cloudflare?.env ?? process.env
     if (env?.UPLOADS_R2) {
       const object = await env.UPLOADS_R2.get(path)
       if (object) {
