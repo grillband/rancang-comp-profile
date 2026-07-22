@@ -41,15 +41,18 @@
     "subheading": "A selection of our technical achievements.",
     "items": [
       {
+        "slug": "fintech-dashboard",
         "image": "/uploads/fintech-dashboard.webp",
         "tags": [
           "React",
           "Node.js"
         ],
         "title": "Fintech Dashboard",
-        "description": "A high-frequency trading interface built for institutional investors, processing millions of transactions per second with sub-millisecond latency."
+        "description": "A high-frequency trading interface built for institutional investors, processing millions of transactions per second with sub-millisecond latency.",
+        "details": "## Overview\n\nA high-frequency trading interface built for institutional investors, processing millions of transactions per second with sub-millisecond latency.\n\n## Key Features\n\n- Real-time market data streaming via WebSocket\n- Advanced charting with 50+ technical indicators\n- One-click trade execution across multiple exchanges\n- Institutional-grade risk management & compliance\n\n## Tech Stack\n\n- **Frontend:** React, TypeScript, D3.js\n- **Backend:** Node.js, Express, WebSocket\n- **Infrastructure:** AWS ECS, Redis, PostgreSQL"
       },
       {
+        "slug": "healthtech-app",
         "image": "/uploads/healthtech-app.webp",
         "tags": [
           "Swift",
@@ -57,7 +60,8 @@
           "GCP"
         ],
         "title": "HealthTech App",
-        "description": "A secure, HIPAA-compliant patient management system providing real-time telemetry data to healthcare professionals globally."
+        "description": "A secure, HIPAA-compliant patient management system providing real-time telemetry data to healthcare professionals globally.",
+        "details": "## Overview\n\nA secure, HIPAA-compliant patient management system providing real-time telemetry data to healthcare professionals globally.\n\n## Key Features\n\n- Real-time patient vitals monitoring\n- Secure messaging between providers\n- HIPAA-compliant data storage & transmission\n- Cross-platform mobile & tablet support\n\n## Tech Stack\n\n- **Mobile:** Swift (iOS), Kotlin (Android)\n- **Backend:** Go, gRPC\n- **Infrastructure:** GCP, Cloud SQL, Firebase"
       }
     ]
   },

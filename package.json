@@ -14,11 +14,14 @@
     "@nuxt/icon": "^2.3.1",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
+    "markdown-it": "^14.3.0",
     "nuxt": "^4.5.0",
     "vue": "^3.5.40",
     "vue-router": "^5.2.0"
   },
   "devDependencies": {
-    "@iconify-json/mdi": "^1.2.3"
+    "@iconify-json/mdi": "^1.2.3",
+    "@tailwindcss/typography": "^0.5.20",
+    "@types/markdown-it": "^14.1.2"
   }
 }

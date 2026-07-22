@@ -146,8 +146,11 @@
             :removable="true"
             @remove="content.projects.items.splice(i, 1)"
           >
-            <InputField v-model="project.title" label="Title" />
-            <TextareaField v-model="project.description" label="Description" :rows="3" class="mt-4" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <InputField v-model="project.title" label="Title" />
+              <InputField v-model="project.slug" label="Slug (URL path)" placeholder="my-project-slug" />
+            </div>
+            <TextareaField v-model="project.description" label="Description (short summary)" :rows="2" class="mt-4" />
             <div class="mt-4">
               <label class="block text-xs font-medium text-surface-500 uppercase tracking-wider mb-2">Tags (comma-separated)</label>
               <input
@@ -155,6 +158,16 @@
                 @input="project.tags = ($event.target as HTMLInputElement).value.split(',').map((s: string) => s.trim()).filter(Boolean)"
                 class="w-full px-4 py-3 bg-surface-50 border border-surface-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition-all"
               />
+            </div>
+            <div class="mt-4">
+              <label class="block text-xs font-medium text-surface-500 uppercase tracking-wider mb-2">Details (Markdown supported)</label>
+              <textarea
+                :value="project.details"
+                @input="project.details = ($event.target as HTMLTextAreaElement).value"
+                rows="8"
+                placeholder="## Overview&#10;&#10;Write your project details here..."
+                class="w-full px-4 py-3 bg-surface-50 border border-surface-200 rounded-xl text-sm text-surface-900 placeholder:text-surface-400 font-mono focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-400 transition-all resize-y"
+              ></textarea>
             </div>
             <div class="mt-4">
               <label class="block text-xs font-medium text-surface-500 uppercase tracking-wider mb-2">Image</label>
@@ -179,7 +192,7 @@
           </EditorCard>
 
           <button
-            @click="content.projects.items.push({ image: '', tags: ['New'], title: 'New Project', description: 'Project description.' })"
+            @click="content.projects.items.push({ slug: 'new-project-' + Date.now(), image: '', tags: ['New'], title: 'New Project', description: 'Project description.', details: '## Overview\n\nDetails about the project.' })"
             class="w-full py-3 border-2 border-dashed border-surface-300 rounded-xl text-sm font-medium text-surface-500 hover:border-brand-500 hover:text-brand-600 transition-all flex items-center justify-center gap-2"
           >
             <Icon name="mdi:plus-circle-outline" size="18" />

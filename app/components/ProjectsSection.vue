@@ -19,12 +19,13 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-        <div
+        <NuxtLink
           v-for="(project, index) in (content?.projects?.items || [])"
           :key="index"
+          :to="`/project/${project.slug}`"
           data-scroll-reveal
           :data-scroll-delay="index * 120"
-          class="group bg-white rounded-2xl border border-surface-200 overflow-hidden hover:shadow-card-hover hover:border-surface-300 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+          class="group flex flex-col bg-white rounded-2xl border border-surface-200 overflow-hidden hover:shadow-card-hover hover:border-surface-300 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer no-underline text-inherit"
         >
           <div class="relative aspect-[16/10] overflow-hidden bg-surface-100">
             <img
@@ -53,7 +54,7 @@
               {{ project.description }}
             </p>
           </div>
-        </div>
+        </NuxtLink>
       </div>
     </div>
   </section>
