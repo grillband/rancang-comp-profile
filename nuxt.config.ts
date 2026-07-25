@@ -27,7 +27,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'DevArchitect Solutions is a premier software development house dedicated to technical mastery, architectural integrity, and forward-thinking innovation.' },
+        { name: 'description', content: 'Rancang.dev Solutions is a premier software development house dedicated to technical mastery, architectural integrity, and forward-thinking innovation.' },
         { name: 'theme-color', content: '#0a0a0a' },
       ],
       link: [
