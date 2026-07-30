@@ -13,7 +13,8 @@
     "title": "Engineering Your Digital Future",
     "subtitle": "We are a premier software development house dedicated to technical mastery, architectural integrity, and forward-thinking innovation. We don't just write code; we build scalable digital ecosystems.",
     "primaryButton": "View Portfolio",
-    "secondaryButton": "Let's Talk"
+    "secondaryButton": "Let's Talk",
+    "background": ""
   },
   "services": {
     "heading": "Core Capabilities",
@@ -22,17 +23,20 @@
       {
         "icon": "mdi:monitor-dashboard",
         "title": "Custom Software",
-        "description": "Bespoke enterprise applications engineered from the ground up to solve your unique operational bottlenecks."
+        "description": "Bespoke enterprise applications engineered from the ground up to solve your unique operational bottlenecks.",
+        "image": ""
       },
       {
         "icon": "mdi:cloud-outline",
         "title": "Cloud Architecture",
-        "description": "Scalable, resilient cloud infrastructure deployments utilizing AWS, Azure, and Google Cloud Platform."
+        "description": "Scalable, resilient cloud infrastructure deployments utilizing AWS, Azure, and Google Cloud Platform.",
+        "image": ""
       },
       {
         "icon": "mdi:cellphone",
         "title": "Mobile Innovation",
-        "description": "High-performance native and cross-platform mobile experiences designed for maximum user engagement."
+        "description": "High-performance native and cross-platform mobile experiences designed for maximum user engagement.",
+        "image": ""
       }
     ]
   },
@@ -62,6 +66,30 @@
         "title": "HealthTech App",
         "description": "A secure, HIPAA-compliant patient management system providing real-time telemetry data to healthcare professionals globally.",
         "details": "## Overview\n\nA secure, HIPAA-compliant patient management system providing real-time telemetry data to healthcare professionals globally.\n\n## Key Features\n\n- Real-time patient vitals monitoring\n- Secure messaging between providers\n- HIPAA-compliant data storage & transmission\n- Cross-platform mobile & tablet support\n\n## Tech Stack\n\n- **Mobile:** Swift (iOS), Kotlin (Android)\n- **Backend:** Go, gRPC\n- **Infrastructure:** GCP, Cloud SQL, Firebase"
+      },
+      {
+        "slug": "ecommerce-platform",
+        "image": "/uploads/ecommerce-platform.webp",
+        "tags": [
+          "Next.js",
+          "Stripe",
+          "PostgreSQL"
+        ],
+        "title": "E-Commerce Platform",
+        "description": "A high-throughput e-commerce engine handling 50k+ concurrent users during flash sales with real-time inventory across 10 warehouses.",
+        "details": "## Overview\n\nA high-throughput e-commerce platform designed for flash sales and high-traffic events.\n\n## Key Features\n\n- Real-time inventory sync across 10 warehouses\n- Sub-second checkout with Stripe integration\n- AI-powered product recommendations\n- Admin dashboard with live analytics\n\n## Tech Stack\n\n- **Frontend:** Next.js, TypeScript, Tailwind CSS\n- **Backend:** Node.js, GraphQL\n- **Infrastructure:** AWS, PostgreSQL, Redis"
+      },
+      {
+        "slug": "analytics-engine",
+        "image": "/uploads/analytics-engine.webp",
+        "tags": [
+          "Python",
+          "Apache Kafka",
+          "D3.js"
+        ],
+        "title": "Analytics Engine",
+        "description": "A real-time data analytics platform processing 10TB+ of daily event data with custom visualization dashboards for enterprise clients.",
+        "details": "## Overview\n\nA real-time data analytics platform for enterprise clients processing massive data volumes.\n\n## Key Features\n\n- 10TB+ daily data processing pipeline\n- Custom dashboard builder with drag-and-drop\n- Real-time anomaly detection with ML\n- Multi-tenant architecture with RBAC\n\n## Tech Stack\n\n- **Backend:** Python, Apache Kafka, Spark\n- **Frontend:** React, D3.js, WebGL\n- **Infrastructure:** GCP, BigQuery, Dataflow"
       }
     ]
   },

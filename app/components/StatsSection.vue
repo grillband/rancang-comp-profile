@@ -1,20 +1,18 @@
 <template>
-  <section class="relative py-16 sm:py-20 bg-surface-950 overflow-hidden">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.05)_0%,_transparent_70%)]"></div>
-
-    <div data-scroll-reveal class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+  <section class="relative py-24 md:py-32 bg-background overflow-hidden border-t border-[var(--color-border-subtle)]">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x divide-[var(--color-border-subtle)]">
         <div
           v-for="(stat, index) in (content?.stats?.items || [])"
           :key="index"
           data-scroll-reveal
-          :data-scroll-delay="index * 150"
-          class="group"
+          :data-scroll-delay="Number(index) * 150"
+          class="flex flex-col items-center justify-center text-center px-4"
         >
-          <div class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-2 tracking-tight">
-            <span>{{ stat.value }}</span>
+          <div class="text-4xl md:text-6xl font-light tracking-tighter text-foreground mb-4">
+            {{ stat.value }}
           </div>
-          <div class="text-xs sm:text-sm font-semibold text-white/80 uppercase tracking-widest">
+          <div class="text-[10px] font-medium text-subtle uppercase tracking-widest">
             {{ stat.label }}
           </div>
         </div>

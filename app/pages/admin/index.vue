@@ -97,6 +97,7 @@
               <InputField v-model="content.hero.primaryButton" label="Primary Button" />
               <InputField v-model="content.hero.secondaryButton" label="Secondary Button" />
             </div>
+            <ImageUploadField v-model="content.hero.background" label="Background Image" class="mt-4" />
           </EditorCard>
         </div>
 
@@ -120,10 +121,11 @@
               <InputField v-model="service.title" label="Title" />
             </div>
             <TextareaField v-model="service.description" label="Description" :rows="3" class="mt-4" />
+            <ImageUploadField v-model="service.image" label="Card Image (optional)" class="mt-4" />
           </EditorCard>
 
           <button
-            @click="content.services.items.push({ icon: 'mdi:plus', title: 'New Service', description: 'Description here.' })"
+            @click="content.services.items.push({ icon: 'mdi:plus', title: 'New Service', description: 'Description here.', image: '' })"
             class="w-full py-3 border-2 border-dashed border-surface-300 rounded-xl text-sm font-medium text-surface-500 hover:border-brand-500 hover:text-brand-600 transition-all flex items-center justify-center gap-2"
           >
             <Icon name="mdi:plus-circle-outline" size="18" />

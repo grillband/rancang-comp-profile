@@ -1,80 +1,137 @@
 <template>
-  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-surface-200/60 shadow-nav">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <!-- Logo -->
-        <NuxtLink to="/" class="flex items-center gap-2.5 group">
-          <img src="/logo.svg" alt="Logo" class="h-10 w-auto transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105" />
-          <span class="text-lg font-bold text-surface-950 tracking-tight">{{ content?.nav?.logo || 'rancang.dev' }}</span>
-        </NuxtLink>
+  <header
+    class="fixed top-0 inset-x-0 z-50 transition-colors duration-500"
+    :class="scrolled ? 'nav-scrolled backdrop-blur-xl border-b border-[var(--nav-border)]' : 'bg-transparent border-transparent'"
+  >
+    <div class="px-6 md:px-12 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <NuxtLink to="/" class="group flex items-center gap-3">
+        <img :src="theme === 'dark' ? '/logo-mark-white.svg' : '/logo.svg'" alt="R" class="h-8 w-auto group-hover:scale-105 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+        <span class="text-xl font-bold tracking-tight text-foreground lowercase group-hover:opacity-80 transition-opacity">rancang.dev</span>
+      </NuxtLink>
 
-        <!-- Desktop Nav -->
-        <div class="hidden md:flex items-center gap-8">
-          <a
-            v-for="item in (content?.nav?.items || [])"
-            :key="item"
-            :href="`#${item.toLowerCase()}`"
-            class="text-sm font-medium text-surface-600 hover:text-surface-950 transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] relative after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-0.5 after:bg-surface-950 after:rounded-full after:transition-all after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:w-full"
-          >
-            {{ item }}
-          </a>
-        </div>
-
-        <!-- CTA Button -->
-        <div class="hidden md:block">
-          <a
-            href="#contact"
-            class="inline-flex items-center px-5 py-2.5 bg-surface-950 text-white text-sm font-semibold rounded-lg hover:bg-surface-800 active:scale-[0.97] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] shadow-sm hover:shadow-md"
-          >
-            {{ content?.nav?.cta || 'Get Started' }}
-          </a>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button
-          @click="mobileMenuOpen = !mobileMenuOpen"
-          class="md:hidden p-2 rounded-lg text-surface-600 hover:bg-surface-100 active:scale-95 transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
-          aria-label="Toggle menu"
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a
+          v-for="item in (content?.nav?.items || [])"
+          :key="item"
+          :href="`#${item.toLowerCase()}`"
+          class="text-xs font-medium tracking-[0.05em] uppercase text-on-elevated hover:text-foreground transition-colors duration-300"
         >
-          <Icon :name="mobileMenuOpen ? 'mdi:close' : 'mdi:menu'" size="24" />
+          {{ item }}
+        </a>
+      </nav>
+
+      <!-- Theme Toggle & CTA -->
+      <div class="hidden md:flex items-center gap-4">
+        <button
+          @click="toggleTheme"
+          class="theme-toggle-btn relative w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 hover:text-foreground"
+          :aria-label="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+        >
+          <svg v-if="theme === 'dark'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg v-else width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
         </button>
+
+        <a
+          href="#contact"
+          class="relative inline-flex items-center justify-center px-6 py-2.5 text-xs font-medium tracking-wide text-on-inverse bg-inverse rounded-full overflow-hidden group"
+        >
+          <span class="relative z-10 group-hover:text-inverse transition-colors duration-300">{{ content?.nav?.cta || 'Start Project' }}</span>
+          <div class="absolute inset-0 bg-zinc-800 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
+        </a>
       </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        @click="mobileMenuOpen = !mobileMenuOpen"
+        class="md:hidden text-white"
+        aria-label="Toggle menu"
+      >
+        <svg v-if="!mobileMenuOpen" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="4" y1="8" x2="20" y2="8"></line>
+          <line x1="4" y1="16" x2="20" y2="16"></line>
+        </svg>
+        <svg v-else width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="6" y1="18" x2="18" y2="6"></line>
+        </svg>
+      </button>
     </div>
 
-    <!-- Mobile Menu -->
-    <Transition
-      enter-active-class="transition duration-200 ease-out"
-      enter-from-class="opacity-0 -translate-y-2"
-      enter-to-class="opacity-100 translate-y-0"
-      leave-active-class="transition duration-150 ease-in"
-      leave-from-class="opacity-100 translate-y-0"
-      leave-to-class="opacity-0 -translate-y-2"
+    <!-- Mobile Menu Dropdown -->
+    <div
+      v-show="mobileMenuOpen"
+      class="md:hidden absolute top-full inset-x-0 bg-background/95 backdrop-blur-xl border-b border-[var(--color-border-subtle)] p-6"
     >
-      <div v-if="mobileMenuOpen" class="md:hidden bg-white border-b border-surface-200 shadow-lg">
-        <div class="px-4 py-4 space-y-2">
-          <a
-            v-for="item in (content?.nav?.items || [])"
-            :key="item"
-            :href="`#${item.toLowerCase()}`"
-            class="block px-4 py-2.5 text-sm font-medium text-surface-700 rounded-lg hover:bg-surface-50 transition-colors"
-            @click="mobileMenuOpen = false"
-          >
-            {{ item }}
-          </a>
-          <a
-            href="#contact"
-            class="block px-4 py-2.5 bg-surface-950 text-white text-sm font-semibold rounded-lg text-center mt-3 active:scale-[0.98] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
-            @click="mobileMenuOpen = false"
-          >
-            {{ content?.nav?.cta || 'Get Started' }}
-          </a>
-        </div>
+      <div class="flex flex-col gap-6">
+        <a
+          v-for="item in (content?.nav?.items || [])"
+          :key="item"
+          :href="`#${item.toLowerCase()}`"
+          class="text-sm font-medium tracking-[0.05em] uppercase text-on-elevated hover:text-foreground transition-colors duration-300"
+          @click="mobileMenuOpen = false"
+        >
+          {{ item }}
+        </a>
+        <a
+          href="#contact"
+          class="inline-flex items-center justify-center px-6 py-3 text-xs font-medium tracking-wide text-on-inverse bg-inverse rounded-full mt-4"
+          @click="mobileMenuOpen = false"
+        >
+          {{ content?.nav?.cta || 'Start Project' }}
+        </a>
       </div>
-    </Transition>
-  </nav>
+    </div>
+  </header>
 </template>
 
 <script setup lang="ts">
 defineProps<{ content: any }>()
 const mobileMenuOpen = ref(false)
+const scrolled = ref(false)
+
+const { theme, toggleTheme } = inject('theme') as { theme: Ref<'dark' | 'light'>, toggleTheme: () => void }
+
+onMounted(() => {
+  const onScroll = () => {
+    scrolled.value = window.scrollY > 20
+  }
+  window.addEventListener('scroll', onScroll, { passive: true })
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
+  })
 </script>
+
+<style scoped>
+.nav-scrolled {
+  background-color: var(--nav-bg);
+}
+.theme-toggle-btn {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #A1A1AA;
+}
+.theme-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #FAFAFA;
+}
+[data-theme="light"] .theme-toggle-btn {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #52525B;
+}
+[data-theme="light"] .theme-toggle-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #09090B;
+}
+</style>

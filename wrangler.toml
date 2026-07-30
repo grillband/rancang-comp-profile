@@ -11,3 +11,6 @@ id = "a992842f2531437ea6d08e3dff284ecd"
 [[r2_buckets]]
 binding = "UPLOADS_R2"
 bucket_name = "rancang-uploads"
+
+[vars]
+CONTACT_WEBHOOK_URL = ""
