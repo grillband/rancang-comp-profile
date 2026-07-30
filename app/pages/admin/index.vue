@@ -251,12 +251,12 @@
           </EditorCard>
 
           <EditorCard
-            v-for="(step, i) in content.process.steps"
+            v-for="(step, i) in content.process?.steps || []"
             :key="i"
             :title="`Step ${Number(i) + 1}: ${step.title}`"
             icon="mdi:layers-outline"
-            :removable="content.process.steps.length > 1"
-            @remove="content.process.steps.splice(i, 1)"
+            :removable="(content.process?.steps?.length || 0) > 1"
+            @remove="content.process?.steps?.splice(i, 1)"
           >
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <InputField v-model="step.num" label="Number" />
@@ -266,7 +266,7 @@
           </EditorCard>
 
           <button
-            @click="content.process.steps.push({ num: '0' + (content.process.steps.length + 1), title: 'New Step', text: 'Description here.' })"
+            @click="(content.process?.steps || []).push({ num: '0' + ((content.process?.steps?.length || 0) + 1), title: 'New Step', text: 'Description here.' })"
             class="w-full py-3 border-2 border-dashed border-surface-300 rounded-xl text-sm font-medium text-surface-500 hover:border-brand-500 hover:text-brand-600 transition-all flex items-center justify-center gap-2"
           >
             <Icon name="mdi:plus-circle-outline" size="18" />
@@ -281,12 +281,12 @@
           </EditorCard>
 
           <EditorCard
-            v-for="(t, i) in content.testimonials.items"
+            v-for="(t, i) in content.testimonials?.items || []"
             :key="i"
             :title="`Testimonial ${Number(i) + 1}: ${t.author}`"
             icon="mdi:account-outline"
-            :removable="content.testimonials.items.length > 1"
-            @remove="content.testimonials.items.splice(i, 1)"
+            :removable="(content.testimonials?.items?.length || 0) > 1"
+            @remove="content.testimonials?.items?.splice(i, 1)"
           >
             <TextareaField v-model="t.quote" label="Quote" :rows="4" />
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
@@ -296,7 +296,7 @@
           </EditorCard>
 
           <button
-            @click="content.testimonials.items.push({ quote: 'New testimonial quote.', author: 'Name', role: 'Role, Company' })"
+            @click="(content.testimonials?.items || []).push({ quote: 'New testimonial quote.', author: 'Name', role: 'Role, Company' })"
             class="w-full py-3 border-2 border-dashed border-surface-300 rounded-xl text-sm font-medium text-surface-500 hover:border-brand-500 hover:text-brand-600 transition-all flex items-center justify-center gap-2"
           >
             <Icon name="mdi:plus-circle-outline" size="18" />
@@ -394,6 +394,10 @@ if (content.value?.nav?.items?.length && typeof content.value.nav.items[0] === '
     href: '#' + s.toLowerCase().replace(/\s+/g, '-')
   }))
 }
+
+// initialize missing nested objects so v-model doesn't error
+if (!content.value?.process) content.value.process = { subheading: '', steps: [] }
+if (!content.value?.testimonials) content.value.testimonials = { items: [] }
 
 const saveContent = async () => {
   saving.value = true
