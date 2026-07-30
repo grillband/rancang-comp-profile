@@ -244,6 +244,66 @@
           </EditorCard>
         </div>
 
+        <!-- ============ PROCESS ============ -->
+        <div v-show="activeTab === 'process'" class="space-y-6">
+          <EditorCard title="Process Section" icon="mdi:git-branch-outline">
+            <InputField v-model="content.process.subheading" label="Section Subheading" />
+          </EditorCard>
+
+          <EditorCard
+            v-for="(step, i) in content.process.steps"
+            :key="i"
+            :title="`Step ${Number(i) + 1}: ${step.title}`"
+            icon="mdi:layers-outline"
+            :removable="content.process.steps.length > 1"
+            @remove="content.process.steps.splice(i, 1)"
+          >
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <InputField v-model="step.num" label="Number" />
+              <InputField v-model="step.title" label="Title" />
+            </div>
+            <TextareaField v-model="step.text" label="Description" :rows="3" class="mt-4" />
+          </EditorCard>
+
+          <button
+            @click="content.process.steps.push({ num: '0' + (content.process.steps.length + 1), title: 'New Step', text: 'Description here.' })"
+            class="w-full py-3 border-2 border-dashed border-surface-300 rounded-xl text-sm font-medium text-surface-500 hover:border-brand-500 hover:text-brand-600 transition-all flex items-center justify-center gap-2"
+          >
+            <Icon name="mdi:plus-circle-outline" size="18" />
+            Add Step
+          </button>
+        </div>
+
+        <!-- ============ TESTIMONIALS ============ -->
+        <div v-show="activeTab === 'testimonials'" class="space-y-6">
+          <EditorCard title="Testimonials Section" icon="mdi:comment-quote-outline">
+            <p class="text-sm text-surface-500">Heading is hardcoded: "What our clients say."</p>
+          </EditorCard>
+
+          <EditorCard
+            v-for="(t, i) in content.testimonials.items"
+            :key="i"
+            :title="`Testimonial ${Number(i) + 1}: ${t.author}`"
+            icon="mdi:account-outline"
+            :removable="content.testimonials.items.length > 1"
+            @remove="content.testimonials.items.splice(i, 1)"
+          >
+            <TextareaField v-model="t.quote" label="Quote" :rows="4" />
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+              <InputField v-model="t.author" label="Author Name" />
+              <InputField v-model="t.role" label="Role / Company" />
+            </div>
+          </EditorCard>
+
+          <button
+            @click="content.testimonials.items.push({ quote: 'New testimonial quote.', author: 'Name', role: 'Role, Company' })"
+            class="w-full py-3 border-2 border-dashed border-surface-300 rounded-xl text-sm font-medium text-surface-500 hover:border-brand-500 hover:text-brand-600 transition-all flex items-center justify-center gap-2"
+          >
+            <Icon name="mdi:plus-circle-outline" size="18" />
+            Add Testimonial
+          </button>
+        </div>
+
         <!-- ============ CONTACT ============ -->
         <div v-show="activeTab === 'contact'" class="space-y-6">
           <EditorCard title="Contact Section" icon="mdi:email-outline">
@@ -313,6 +373,8 @@ const tabs = [
   { id: 'services', label: 'Services', icon: 'mdi:cog-outline' },
   { id: 'projects', label: 'Projects', icon: 'mdi:folder-outline' },
   { id: 'stats', label: 'Stats', icon: 'mdi:chart-bar' },
+  { id: 'process', label: 'Process', icon: 'mdi:git-branch-outline' },
+  { id: 'testimonials', label: 'Testimonials', icon: 'mdi:comment-quote-outline' },
   { id: 'contact', label: 'Contact', icon: 'mdi:email-outline' },
   { id: 'footer', label: 'Footer', icon: 'mdi:page-layout-footer' },
 ]
