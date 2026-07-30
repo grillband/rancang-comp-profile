@@ -1,9 +1,7 @@
 name = "rancang"
-main = ".output/server/index.mjs"
-account_id = ""
+pages_build_output_dir = ".output/public"
 compatibility_date = "2025-07-15"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = ".output/public"
 
 [[kv_namespaces]]
 binding = "CONTENT_KV"
@@ -12,7 +10,4 @@ id = "a992842f2531437ea6d08e3dff284ecd"
 [[r2_buckets]]
 binding = "UPLOADS_R2"
 bucket_name = "rancang-uploads"
-
-[assets]
-directory = ".output/public"
 
