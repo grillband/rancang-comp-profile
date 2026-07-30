@@ -15,6 +15,3 @@ bucket_name = "rancang-uploads"
 [assets]
 directory = ".output/public"
 
-[vars]
-CONTACT_WEBHOOK_URL = ""
-SITE_URL = "https://rancang.dev"
