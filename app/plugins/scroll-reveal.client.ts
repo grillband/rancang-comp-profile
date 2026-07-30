@@ -3,60 +3,66 @@ export default defineNuxtPlugin(() => {
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const delay = entry.target.getAttribute('data-scroll-delay')
-          if (delay && !prefersReducedMotion.matches) {
-            (entry.target as HTMLElement).style.transitionDelay = `${delay}ms`
-          }
-          entry.target.classList.add('revealed')
-          observer.unobserve(entry.target)
-        }
-      })
-    },
-    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-  )
+  let ticking = false
+  let cleanupQueue: (() => void)[] = []
 
-  const observeNew = () => {
-    document.querySelectorAll('[data-scroll-reveal]:not(.revealed)').forEach((el) => {
-      if (prefersReducedMotion.matches) {
-        el.classList.add('revealed')
-      } else {
-        observer.observe(el)
+  function revealCheck() {
+    const elements = document.querySelectorAll('[data-scroll-reveal]:not([data-revealed])')
+    if (elements.length === 0) return
+
+    const windowHeight = window.innerHeight
+
+    elements.forEach((el) => {
+      const rect = el.getBoundingClientRect()
+      if (rect.top < windowHeight - 60) {
+        if (!prefersReducedMotion.matches) {
+          const delay = el.getAttribute('data-scroll-delay')
+          if (delay) {
+            ;(el as HTMLElement).style.transitionDelay = `${delay}ms`
+          }
+        }
+        el.setAttribute('data-revealed', '')
       }
     })
   }
 
-  // Also listen for changes to the media query
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        revealCheck()
+        ticking = false
+      })
+      ticking = true
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true })
+  cleanupQueue.push(() => window.removeEventListener('scroll', onScroll))
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => revealCheck())
+  } else {
+    revealCheck()
+  }
+
   prefersReducedMotion.addEventListener('change', (e) => {
     if (e.matches) {
-      document.querySelectorAll('[data-scroll-reveal]:not(.revealed)').forEach((el) => {
-        el.classList.add('revealed')
-        observer.unobserve(el)
+      document.querySelectorAll('[data-scroll-reveal]:not([data-revealed])').forEach((el) => {
+        el.setAttribute('data-revealed', '')
       })
     }
   })
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', observeNew)
-  } else {
-    observeNew()
-  }
-
   const nuxtApp = useNuxtApp()
 
   nuxtApp.hook('page:finish', () => {
-    nextTick(() => {
-      observeNew()
-      requestAnimationFrame(() => {
-        observeNew()
-      })
+    requestAnimationFrame(() => {
+      revealCheck()
+      requestAnimationFrame(() => revealCheck())
     })
   })
 
   nuxtApp.hook('page:transition:finish', () => {
-    observeNew()
+    revealCheck()
   })
 })

@@ -1,5 +1,5 @@
 <template>
-  <section class="relative border-y overflow-hidden py-8 md:py-10" :style="{ borderColor: 'var(--line)' }">
+  <section data-scroll-reveal class="relative border-y overflow-hidden py-8 md:py-10" :style="{ borderColor: 'var(--line)' }">
     <div class="flex whitespace-nowrap marquee-track">
       <span
         v-for="(item, i) in doubledItems"

@@ -1,7 +1,7 @@
 <template>
   <section id="services" class="px-6 md:px-10 py-24 md:py-36">
     <div class="max-w-[1600px] mx-auto">
-      <div class="grid md:grid-cols-12 gap-10 mb-16">
+      <div data-scroll-reveal class="grid md:grid-cols-12 gap-10 mb-16">
         <div class="md:col-span-4">
           <div class="font-mono text-[11px] tracking-[0.2em] uppercase text-muted-ink mb-4">[ Section 02 &mdash; Services ]</div>
         </div>
@@ -14,6 +14,8 @@
         <div
           v-for="(item, i) in (content?.services?.items || [])"
           :key="item.num"
+          data-scroll-reveal
+          :data-scroll-delay="i * 80"
           class="relative p-6 md:p-8 rounded-2xl border h-full group hover:-translate-y-1 transition-transform duration-500"
           :style="{ borderColor: 'var(--line)', background: 'var(--bg-elev)' }"
         >

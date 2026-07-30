@@ -1,7 +1,7 @@
 <template>
   <section id="work" class="px-6 md:px-10 py-24 md:py-36" :style="{ borderColor: 'var(--line)' }">
     <div class="max-w-[1600px] mx-auto">
-      <div class="grid md:grid-cols-12 gap-10 mb-16">
+      <div data-scroll-reveal class="grid md:grid-cols-12 gap-10 mb-16">
         <div class="md:col-span-4">
           <div class="font-mono text-[11px] tracking-[0.2em] uppercase text-muted-ink mb-4">[ Section 03 &mdash; Selected Work ]</div>
         </div>
@@ -18,6 +18,8 @@
           v-for="(project, index) in (content?.projects?.items || [])"
           :key="project.slug"
           :to="`/project/${project.slug}`"
+          data-scroll-reveal
+          :data-scroll-delay="index * 80"
           class="group relative p-6 md:p-8 rounded-2xl border transition-all duration-500"
           :style="{ borderColor: 'var(--line)', background: 'var(--bg-elev)' }"
         >

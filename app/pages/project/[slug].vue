@@ -10,7 +10,7 @@
           Back to Projects
         </NuxtLink>
 
-        <div v-if="project">
+        <div v-if="project" data-scroll-reveal>
           <div class="flex items-start justify-between mb-8">
             <div>
               <div class="font-mono text-[11px] tracking-widest text-muted-ink mb-1">{{ project.year }}</div>
@@ -28,8 +28,10 @@
 
           <div class="flex flex-wrap gap-2 mb-6">
             <span
-              v-for="tag in (project.tags || [])"
+              v-for="(tag, i) in (project.tags || [])"
               :key="tag"
+              data-scroll-reveal
+              :data-scroll-delay="i * 60"
               class="px-3 py-1.5 text-[10px] uppercase tracking-widest text-muted-ink rounded-full border"
               :style="{ borderColor: 'var(--line)' }"
             >
@@ -37,11 +39,11 @@
             </span>
           </div>
 
-          <h1 class="text-3xl sm:text-4xl font-medium tracking-[-0.02em] text-ink mb-4">
+          <h1 data-scroll-reveal class="text-3xl sm:text-4xl font-medium tracking-[-0.02em] text-ink mb-4">
             {{ project.title }}
           </h1>
 
-          <div class="text-ink-2 text-base leading-relaxed max-w-2xl">
+          <div data-scroll-reveal class="text-ink-2 text-base leading-relaxed max-w-2xl">
             <div v-if="project.details" v-html="renderedDetails"></div>
             <p v-else>{{ project.description }}</p>
           </div>

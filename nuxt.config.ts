@@ -6,7 +6,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
-    '@nuxt/icon'
+    '@nuxt/icon',
+    'motion-v'
   ],
 
   googleFonts: {
@@ -34,6 +35,7 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: 'We build high-performance software architecture for companies that demand precision.' },
         { name: 'theme-color', content: '#F5F0E8' },
+        { name: 'google-site-verification', content: 'e8unVJcbYwnJvEo9q92o6zFKfoQ6q5X9AR7VKmXCeG4' },
         { property: 'og:type', content: 'website' },
         { property: 'og:title', content: 'rancang.dev — Engineering Digital Futures' },
         { property: 'og:description', content: 'We build high-performance software architecture for companies that demand precision.' },

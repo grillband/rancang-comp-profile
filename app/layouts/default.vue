@@ -1,7 +1,17 @@
 <template>
   <div class="min-h-screen flex flex-col" :style="{ background: 'var(--bg)', color: 'var(--ink)' }">
-    <div ref="dotRef" class="cursor-dot"></div>
-    <div ref="ringRef" class="cursor-ring"></div>
+    <div
+      class="cursor-dot"
+      :style="{ transform: `translate(${dotX - 4}px, ${dotY - 4}px)` }"
+    ></div>
+    <div
+      class="cursor-ring"
+      :style="{
+        transform: `translate(${ringX - halfRing}px, ${ringY - halfRing}px)`,
+        width: ringSize + 'px',
+        height: ringSize + 'px'
+      }"
+    ></div>
 
     <SiteNavbar :content="content" />
     <main class="flex-1 relative z-[1]">
@@ -15,41 +25,62 @@
 const { data: content } = await useFetch('/api/content')
 provide('siteContent', content)
 
-const dotRef = ref<HTMLElement | null>(null)
-const ringRef = ref<HTMLElement | null>(null)
+const dotX = ref(0)
+const dotY = ref(0)
+const ringX = ref(0)
+const ringY = ref(0)
+const ringSize = ref(34)
+const halfRing = computed(() => ringSize.value / 2)
 
 onMounted(() => {
-  const dot = dotRef.value
-  const ring = ringRef.value
-  if (!dot || !ring) return
+  if (typeof window === 'undefined') return
 
-  let mouseX = 0, mouseY = 0
-  let ringX = 0, ringY = 0
+  let mx = 0, my = 0
+  let rx = 0, ry = 0
+  let raf: number
 
   const onMove = (e: MouseEvent) => {
-    mouseX = e.clientX
-    mouseY = e.clientY
-    dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`
+    mx = e.clientX
+    my = e.clientY
+    dotX.value = mx
+    dotY.value = my
   }
 
   const animate = () => {
-    ringX += (mouseX - ringX) * 0.15
-    ringY += (mouseY - ringY) * 0.15
-    ring.style.transform = `translate(${ringX - 17}px, ${ringY - 17}px)`
-    requestAnimationFrame(animate)
+    rx += (mx - rx) * 0.15
+    ry += (my - ry) * 0.15
+    ringX.value = rx
+    ringY.value = ry
+    raf = requestAnimationFrame(animate)
   }
 
-  const onEnter = () => { ring.style.width = '60px'; ring.style.height = '60px' }
-  const onLeave = () => { ring.style.width = '34px'; ring.style.height = '34px' }
+  const onEnter = () => { ringSize.value = 60 }
+  const onLeave = () => { ringSize.value = 34 }
 
-  window.addEventListener('mousemove', onMove)
-  document.querySelectorAll('a, button, [data-cursor="hover"]').forEach(el => {
+  window.addEventListener('mousemove', onMove, { passive: true })
+
+  const hoverEls = document.querySelectorAll<HTMLElement>('a, button, [data-cursor="hover"]')
+  hoverEls.forEach(el => {
     el.addEventListener('mouseenter', onEnter)
     el.addEventListener('mouseleave', onLeave)
   })
 
   animate()
 
-  onUnmounted(() => window.removeEventListener('mousemove', onMove))
+  const observer = new MutationObserver(() => {
+    document.querySelectorAll<HTMLElement>('a, button, [data-cursor="hover"]').forEach(el => {
+      el.removeEventListener('mouseenter', onEnter)
+      el.removeEventListener('mouseleave', onLeave)
+      el.addEventListener('mouseenter', onEnter)
+      el.addEventListener('mouseleave', onLeave)
+    })
+  })
+  observer.observe(document.body, { childList: true, subtree: true })
+
+  onUnmounted(() => {
+    window.removeEventListener('mousemove', onMove)
+    cancelAnimationFrame(raf)
+    observer.disconnect()
+  })
 })
 </script>

@@ -1,7 +1,7 @@
 <template>
   <section class="px-6 md:px-10 py-24 md:py-36 border-y" :style="{ borderColor: 'var(--line)' }">
     <div class="max-w-[1600px] mx-auto">
-      <div class="grid md:grid-cols-12 gap-10 mb-16">
+      <div data-scroll-reveal class="grid md:grid-cols-12 gap-10 mb-16">
         <div class="md:col-span-4">
           <div class="font-mono text-[11px] tracking-[0.2em] uppercase text-muted-ink mb-4">[ Section 05 &mdash; Testimonials ]</div>
         </div>
@@ -16,6 +16,8 @@
         <div
           v-for="(t, i) in (content?.testimonials?.items || [])"
           :key="i"
+          data-scroll-reveal
+          :data-scroll-delay="i * 100"
           class="relative p-6 md:p-10 rounded-2xl border"
           :style="{ borderColor: 'var(--line)', background: 'var(--bg-elev)' }"
         >

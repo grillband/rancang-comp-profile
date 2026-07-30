@@ -1,7 +1,7 @@
 <template>
   <section id="contact" class="px-6 md:px-10 py-24 md:py-36 border-t" :style="{ borderColor: 'var(--line)' }">
     <div class="max-w-[1600px] mx-auto grid md:grid-cols-12 gap-12">
-      <div class="md:col-span-5">
+      <div data-scroll-reveal class="md:col-span-5">
         <div class="font-mono text-[11px] tracking-[0.2em] uppercase text-muted-ink mb-6">[ Section 06 &mdash; Contact ]</div>
         <h2 class="font-medium tracking-[-0.035em] leading-[0.9] text-ink" :style="{ fontSize: 'clamp(2.6rem, 7vw, 6rem)' }">
           {{ content?.contact?.heading || "Let's build" }}<br/>
@@ -29,10 +29,10 @@
         </div>
       </div>
 
-      <div class="md:col-span-7">
+      <div data-scroll-reveal data-scroll-delay="150" class="md:col-span-7">
         <form @submit.prevent="handleSubmit" class="relative p-6 md:p-10 rounded-2xl" :style="{ background: 'var(--bg-elev)' }">
           <div class="grid md:grid-cols-2 gap-6">
-            <div>
+            <div data-scroll-reveal :data-scroll-delay="200">
               <label class="font-mono text-[10px] uppercase tracking-widest text-muted-ink">01 &middot; Your Name</label>
               <input
                 v-model="form.name"
@@ -41,7 +41,7 @@
                 placeholder="Alexei Rossi"
               />
             </div>
-            <div>
+            <div data-scroll-reveal :data-scroll-delay="280">
               <label class="font-mono text-[10px] uppercase tracking-widest text-muted-ink">02 &middot; Email</label>
               <input
                 v-model="form.email"
@@ -51,7 +51,7 @@
                 placeholder="alexei@company.com"
               />
             </div>
-            <div class="md:col-span-2">
+            <div data-scroll-reveal :data-scroll-delay="360" class="md:col-span-2">
               <label class="font-mono text-[10px] uppercase tracking-widest text-muted-ink">03 &middot; Company</label>
               <input
                 v-model="form.company"
@@ -60,7 +60,7 @@
                 placeholder="Meridian Capital"
               />
             </div>
-            <div class="md:col-span-2">
+            <div data-scroll-reveal :data-scroll-delay="440" class="md:col-span-2">
               <label class="font-mono text-[10px] uppercase tracking-widest text-muted-ink">04 &middot; Tell us about the project</label>
               <textarea
                 v-model="form.message"
@@ -80,9 +80,20 @@
               class="inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full bg-ink text-[12px] font-medium tracking-[0.14em] uppercase disabled:opacity-50 transition-transform hover:scale-[1.02] active:scale-[0.98]"
               :style="{ color: 'var(--bg)' }"
             >
-              <template v-if="sent">Sent &mdash; thank you<span class="w-9 h-9 rounded-full flex items-center justify-center bg-lime" :style="{ color: 'var(--ink)' }">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </span></template>
+              <template v-if="sent">
+                <Motion
+                  as="span"
+                  :initial="{ scale: 0, opacity: 0 }"
+                  :animate="{ scale: 1, opacity: 1 }"
+                  :transition="{ type: 'spring', stiffness: 300, damping: 15 }"
+                  class="inline-flex items-center gap-3"
+                >
+                  Sent &mdash; thank you
+                  <span class="w-9 h-9 rounded-full flex items-center justify-center bg-lime" :style="{ color: 'var(--ink)' }">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                </Motion>
+              </template>
               <template v-else>
                 Send Message
                 <span class="w-9 h-9 rounded-full flex items-center justify-center" :style="{ background: 'var(--bg)', color: 'var(--ink)' }">
