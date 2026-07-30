@@ -1,17 +1,24 @@
 <template>
   <div>
-    <section class="relative pt-32 pb-24 px-6 md:px-12 bg-background overflow-hidden">
+    <section class="px-6 md:px-10 pt-32 pb-24">
       <div class="max-w-4xl mx-auto">
         <NuxtLink
           to="/project"
-          class="inline-flex items-center gap-1 text-sm font-medium text-on-elevated hover:text-foreground mb-12 transition-colors duration-300"
+          class="inline-flex items-center gap-1 text-sm font-medium text-ink-2 hover:text-ink mb-12 transition-colors duration-300"
         >
-          <Icon name="mdi:arrow-left" size="16" />
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
           Back to Projects
         </NuxtLink>
 
-        <div v-if="project" data-scroll-reveal>
-          <div class="relative rounded-[2rem] overflow-hidden bg-elevated mb-10 border border-[var(--color-border-subtle)]">
+        <div v-if="project">
+          <div class="flex items-start justify-between mb-8">
+            <div>
+              <div class="font-mono text-[11px] tracking-widest text-muted-ink mb-1">{{ project.year }}</div>
+              <div class="font-mono text-[11px] tracking-widest text-muted-ink">{{ project.client }}</div>
+            </div>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden mb-10 border" :style="{ borderColor: 'var(--line)', background: 'var(--bg-elev)' }">
             <img
               :src="project.image"
               :alt="project.title"
@@ -23,25 +30,26 @@
             <span
               v-for="tag in (project.tags || [])"
               :key="tag"
-              class="px-3 py-1.5 text-[10px] uppercase tracking-widest text-on-elevated tag-pill backdrop-blur-md rounded-full border border-[var(--color-border-subtle)]"
+              class="px-3 py-1.5 text-[10px] uppercase tracking-widest text-muted-ink rounded-full border"
+              :style="{ borderColor: 'var(--line)' }"
             >
               {{ tag }}
             </span>
           </div>
 
-          <h1 class="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight mb-4">
+          <h1 class="text-3xl sm:text-4xl font-medium tracking-[-0.02em] text-ink mb-4">
             {{ project.title }}
           </h1>
 
-          <div class="text-on-elevated text-base leading-relaxed max-w-2xl">
+          <div class="text-ink-2 text-base leading-relaxed max-w-2xl">
             <div v-if="project.details" v-html="renderedDetails"></div>
             <p v-else>{{ project.description }}</p>
           </div>
         </div>
 
         <div v-else-if="!loading" class="text-center py-20">
-          <p class="text-on-elevated text-lg mb-4">Project not found.</p>
-          <NuxtLink to="/project" class="text-on-elevated hover:text-foreground underline underline-offset-4 decoration-[var(--color-border-subtle)] transition-colors">
+          <p class="text-ink-2 text-lg mb-4">Project not found.</p>
+          <NuxtLink to="/project" class="text-ink-2 hover:text-ink link-underline transition-colors">
             &larr; Back to Projects
           </NuxtLink>
         </div>
@@ -86,12 +94,3 @@ onMounted(() => {
   window.scrollTo({ top: 0 })
 })
 </script>
-
-<style scoped>
-.tag-pill {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-[data-theme="light"] .tag-pill {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-</style>

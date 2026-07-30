@@ -1,74 +1,68 @@
 <template>
-  <section class="relative h-[100svh] flex flex-col justify-center px-6 md:px-12 overflow-hidden bg-background">
-    <div v-if="content?.hero?.background" class="absolute inset-0 z-0">
-      <img :src="content.hero.background" alt="" class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-background/60"></div>
+  <section class="relative min-h-[100svh] flex flex-col justify-between px-6 md:px-10 pt-28 pb-10 overflow-hidden">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-[11px] font-mono uppercase tracking-widest text-muted-ink">
+      <div>
+        <div class="text-ink-2">[01]</div>
+        <div class="mt-1">{{ content?.hero?.eyebrow || 'Jakarta, ID' }}</div>
+      </div>
+      <div>
+        <div class="text-ink-2">[02]</div>
+        <div class="mt-1">{{ content?.hero?.location || 'UTC+7' }}</div>
+      </div>
+      <div class="hidden md:block">
+        <div class="text-ink-2">[03]</div>
+        <div class="mt-1">{{ time || '00:00 JKT' }}</div>
+      </div>
+      <div class="hidden md:block">
+        <div class="text-ink-2">[04]</div>
+        <div class="mt-1 flex items-center gap-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-lime" :style="{ boxShadow: '0 0 12px var(--lime)' }"></span>
+          {{ content?.hero?.availability || 'Available for projects' }}
+        </div>
+      </div>
     </div>
-    <div class="relative z-10 hero-text-container">
-      <h1 class="text-[12vw] leading-[0.9] font-semibold tracking-tighter text-foreground uppercase text-balance">
-        <span class="block overflow-hidden">
-          <span class="block translate-y-full opacity-0 gs-reveal-up">Engineering</span>
-        </span>
-        <span class="block overflow-hidden">
-          <span class="block translate-y-full opacity-0 gs-reveal-up text-subtle">Digital</span>
-        </span>
-        <span class="block overflow-hidden">
-          <span class="block translate-y-full opacity-0 gs-reveal-up">Futures.</span>
+
+    <div class="flex-1 flex items-center py-12 md:py-16">
+      <h1 class="font-medium tracking-[-0.045em] leading-[0.86] text-ink" :style="{ fontSize: 'clamp(4rem, 15vw, 15rem)' }">
+        <span v-for="(line, i) in (content?.hero?.lines || ['Engineering', 'Digital', 'Futures.'])" :key="i" class="mask-line">
+          <span class="block">
+            <span v-if="i === 1" class="font-serif italic tracking-tight text-ink-2" style="font-weight: 400">{{ line }}</span>
+            <span v-else>{{ line }}</span>
+          </span>
         </span>
       </h1>
     </div>
 
-    <div class="absolute bottom-12 inset-x-6 md:inset-x-12 flex flex-col md:flex-row justify-between items-end gap-6 z-10 gs-fade-in opacity-0">
-      <p class="max-w-sm text-sm text-on-elevated font-medium leading-relaxed text-pretty">
+    <div class="grid grid-cols-1 md:grid-cols-3 items-end gap-10">
+      <p class="text-sm md:text-[15px] leading-relaxed text-ink-2 max-w-md">
         {{ content?.hero?.subtitle || 'We build high-performance software architecture for companies that demand precision.' }}
       </p>
-      
-      <div class="flex items-center gap-6">
-        <div class="flex flex-col items-end">
-          <span class="text-[10px] text-muted-text uppercase tracking-widest">Scroll</span>
-          <div class="w-px h-12 bg-gradient-to-b from-muted-text to-transparent mt-2"></div>
+      <div class="hidden md:block"></div>
+      <div class="flex flex-col items-start md:items-end gap-3">
+        <div class="font-mono text-[10px] tracking-[0.2em] uppercase text-muted-ink">Scroll to explore</div>
+        <div class="w-10 h-10 rounded-full border flex items-center justify-center" :style="{ borderColor: 'var(--line)' }">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+          </svg>
         </div>
       </div>
     </div>
-    
-    <div class="absolute inset-0 hero-gradient z-0 pointer-events-none"></div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
-
 defineProps<{ content: any }>()
 
-onMounted(async () => {
-  if (typeof window === 'undefined') return
-  
-  // Dynamically import GSAP to avoid SSR issues
-  const { gsap } = await import('gsap')
-  
-  // Timeline for the hero entrance
-  const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
-  
-  tl.to('.gs-reveal-up', {
-    y: 0,
-    opacity: 1,
-    duration: 1.2,
-    stagger: 0.15,
-    delay: 0.2
-  })
-  .to('.gs-fade-in', {
-    opacity: 1,
-    duration: 1
-  }, "-=0.6")
+const time = ref('')
+
+onMounted(() => {
+  const update = () => {
+    const d = new Date()
+    const opts: any = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Jakarta' }
+    time.value = d.toLocaleTimeString('en-GB', opts) + ' JKT'
+  }
+  update()
+  const i = setInterval(update, 30000)
+  onUnmounted(() => clearInterval(i))
 })
 </script>
-
-<style scoped>
-.hero-gradient {
-  background: radial-gradient(ellipse at top right, rgba(24, 24, 27, 0.2), transparent 60%, transparent);
-}
-
-[data-theme="light"] .hero-gradient {
-  background: radial-gradient(ellipse at top right, rgba(0, 0, 0, 0.03), transparent 60%, transparent);
-}
-</style>

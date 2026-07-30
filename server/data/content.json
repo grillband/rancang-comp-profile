@@ -2,91 +2,97 @@
   "nav": {
     "logo": "rancang.dev",
     "items": [
-      "Services",
-      "Portfolio",
-      "Team",
-      "Contact"
+      { "label": "Studio", "href": "#studio" },
+      { "label": "Services", "href": "#services" },
+      { "label": "Work", "href": "#work" },
+      { "label": "Contact", "href": "#contact" }
     ],
-    "cta": "Get Started"
+    "cta": "Start Project"
   },
   "hero": {
-    "title": "Engineering Your Digital Future",
+    "eyebrow": "Jakarta, ID",
+    "location": "UTC+7",
+    "availability": "Available for projects",
     "subtitle": "We are a premier software development house dedicated to technical mastery, architectural integrity, and forward-thinking innovation. We don't just write code; we build scalable digital ecosystems.",
-    "primaryButton": "View Portfolio",
-    "secondaryButton": "Let's Talk",
-    "background": ""
+    "lines": [
+      "Engineering",
+      "Digital",
+      "Futures."
+    ]
   },
+  "marquee": [
+    "React",
+    "Vue.js",
+    "Node.js",
+    "TypeScript",
+    "Python",
+    "AWS",
+    "GCP",
+    "Kubernetes",
+    "PostgreSQL",
+    "Redis",
+    "GraphQL",
+    "Docker"
+  ],
   "services": {
-    "heading": "Core Capabilities",
     "subheading": "Architecting robust solutions for complex business challenges.",
     "items": [
       {
-        "icon": "mdi:monitor-dashboard",
+        "num": "01",
         "title": "Custom Software",
-        "description": "Bespoke enterprise applications engineered from the ground up to solve your unique operational bottlenecks.",
-        "image": ""
+        "description": "Bespoke enterprise applications engineered from the ground up to solve your unique operational bottlenecks."
       },
       {
-        "icon": "mdi:cloud-outline",
+        "num": "02",
         "title": "Cloud Architecture",
-        "description": "Scalable, resilient cloud infrastructure deployments utilizing AWS, Azure, and Google Cloud Platform.",
-        "image": ""
+        "description": "Scalable, resilient cloud infrastructure deployments utilizing AWS, Azure, and Google Cloud Platform."
       },
       {
-        "icon": "mdi:cellphone",
+        "num": "03",
         "title": "Mobile Innovation",
-        "description": "High-performance native and cross-platform mobile experiences designed for maximum user engagement.",
-        "image": ""
+        "description": "High-performance native and cross-platform mobile experiences designed for maximum user engagement."
       }
     ]
   },
   "projects": {
-    "heading": "Past Projects",
     "subheading": "A selection of our technical achievements.",
     "items": [
       {
         "slug": "fintech-dashboard",
+        "year": "2024",
+        "client": "FinSecure Capital",
         "image": "/uploads/fintech-dashboard.webp",
-        "tags": [
-          "React",
-          "Node.js"
-        ],
+        "tags": ["React", "Node.js"],
         "title": "Fintech Dashboard",
         "description": "A high-frequency trading interface built for institutional investors, processing millions of transactions per second with sub-millisecond latency.",
         "details": "## Overview\n\nA high-frequency trading interface built for institutional investors, processing millions of transactions per second with sub-millisecond latency.\n\n## Key Features\n\n- Real-time market data streaming via WebSocket\n- Advanced charting with 50+ technical indicators\n- One-click trade execution across multiple exchanges\n- Institutional-grade risk management & compliance\n\n## Tech Stack\n\n- **Frontend:** React, TypeScript, D3.js\n- **Backend:** Node.js, Express, WebSocket\n- **Infrastructure:** AWS ECS, Redis, PostgreSQL"
       },
       {
         "slug": "healthtech-app",
+        "year": "2024",
+        "client": "MedSync Labs",
         "image": "/uploads/healthtech-app.webp",
-        "tags": [
-          "Swift",
-          "Kotlin",
-          "GCP"
-        ],
+        "tags": ["Swift", "Kotlin", "GCP"],
         "title": "HealthTech App",
         "description": "A secure, HIPAA-compliant patient management system providing real-time telemetry data to healthcare professionals globally.",
         "details": "## Overview\n\nA secure, HIPAA-compliant patient management system providing real-time telemetry data to healthcare professionals globally.\n\n## Key Features\n\n- Real-time patient vitals monitoring\n- Secure messaging between providers\n- HIPAA-compliant data storage & transmission\n- Cross-platform mobile & tablet support\n\n## Tech Stack\n\n- **Mobile:** Swift (iOS), Kotlin (Android)\n- **Backend:** Go, gRPC\n- **Infrastructure:** GCP, Cloud SQL, Firebase"
       },
       {
         "slug": "ecommerce-platform",
+        "year": "2023",
+        "client": "RetailMax",
         "image": "/uploads/ecommerce-platform.webp",
-        "tags": [
-          "Next.js",
-          "Stripe",
-          "PostgreSQL"
-        ],
+        "tags": ["Next.js", "Stripe", "PostgreSQL"],
         "title": "E-Commerce Platform",
         "description": "A high-throughput e-commerce engine handling 50k+ concurrent users during flash sales with real-time inventory across 10 warehouses.",
         "details": "## Overview\n\nA high-throughput e-commerce platform designed for flash sales and high-traffic events.\n\n## Key Features\n\n- Real-time inventory sync across 10 warehouses\n- Sub-second checkout with Stripe integration\n- AI-powered product recommendations\n- Admin dashboard with live analytics\n\n## Tech Stack\n\n- **Frontend:** Next.js, TypeScript, Tailwind CSS\n- **Backend:** Node.js, GraphQL\n- **Infrastructure:** AWS, PostgreSQL, Redis"
       },
       {
         "slug": "analytics-engine",
+        "year": "2023",
+        "client": "DataPulse Inc.",
         "image": "/uploads/analytics-engine.webp",
-        "tags": [
-          "Python",
-          "Apache Kafka",
-          "D3.js"
-        ],
+        "tags": ["Python", "Apache Kafka", "D3.js"],
         "title": "Analytics Engine",
         "description": "A real-time data analytics platform processing 10TB+ of daily event data with custom visualization dashboards for enterprise clients.",
         "details": "## Overview\n\nA real-time data analytics platform for enterprise clients processing massive data volumes.\n\n## Key Features\n\n- 10TB+ daily data processing pipeline\n- Custom dashboard builder with drag-and-drop\n- Real-time anomaly detection with ML\n- Multi-tenant architecture with RBAC\n\n## Tech Stack\n\n- **Backend:** Python, Apache Kafka, Spark\n- **Frontend:** React, D3.js, WebGL\n- **Infrastructure:** GCP, BigQuery, Dataflow"
@@ -95,51 +101,79 @@
   },
   "stats": {
     "items": [
+      { "value": "150+", "label": "Projects Delivered" },
+      { "value": "50+", "label": "Expert Engineers" },
+      { "value": "98%", "label": "Client Satisfaction" },
+      { "value": "12+", "label": "Industry Awards" }
+    ]
+  },
+  "process": {
+    "subheading": "From discovery to deployment, we maintain clarity and momentum at every stage.",
+    "steps": [
       {
-        "value": "150+",
-        "label": "PROJECTS DELIVERED"
+        "num": "01",
+        "title": "Discovery",
+        "text": "We immerse ourselves in your domain, uncovering constraints and opportunities before writing a single line of code."
       },
       {
-        "value": "50+",
-        "label": "EXPERT ENGINEERS"
+        "num": "02",
+        "title": "Architecture",
+        "text": "Our engineers design systems that balance performance, scalability, and maintainability from day one."
       },
       {
-        "value": "98%",
-        "label": "CLIENT SATISFACTION"
+        "num": "03",
+        "title": "Execution",
+        "text": "Rapid, iterative delivery with continuous integration and transparent progress reporting."
+      },
+      {
+        "num": "04",
+        "title": "Evolve",
+        "text": "Post-launch, we monitor, optimize, and evolve your platform to meet changing demands."
+      }
+    ]
+  },
+  "testimonials": {
+    "items": [
+      {
+        "quote": "They didn't just build our platform — they re-architected our entire approach to engineering. The results exceeded every benchmark.",
+        "author": "Alex Chen",
+        "role": "CTO, FinSecure Capital"
+      },
+      {
+        "quote": "Working with this team felt like an extension of our own engineering org. Deep technical skill, clear communication, and genuine care for the craft.",
+        "author": "Sarah Mitchell",
+        "role": "VP Engineering, MedSync Labs"
       }
     ]
   },
   "contact": {
-    "heading": "Get in Touch",
+    "heading": "Let's build",
+    "heading2": "something great.",
     "subheading": "Ready to start your next architectural masterwork? Reach out to our engineering team.",
-    "email": "hello@devarchitectsolutions.com",
-    "address": "1380 Tech Boulevard, Suite 400\nSan Francisco, CA 94107",
-    "formFields": [
-      "Name",
-      "Email",
-      "Message"
-    ],
-    "submitText": "Send a Message"
+    "email": "hello@rancang.dev.com",
+    "phone": "+62 21 1234 5678",
+    "address": "1380 Tech Boulevard, Suite 400\nJakarta, Indonesia"
   },
   "footer": {
-    "logo": "rancang.dev",
-    "copyright": "© 2024 rancang.dev. All rights reserved. Built for technical mastery.",
+    "tagline": "We operate at the intersection of extreme technical performance and meticulous design.",
     "columns": [
       {
         "title": "Legal",
-        "links": [
-          "Privacy Policy",
-          "Terms of Service",
-          "Cookie Policy"
-        ]
+        "links": ["Privacy Policy", "Terms of Service", "Cookie Policy"]
       },
       {
         "title": "Company",
-        "links": [
-          "Career",
-          "Blog"
-        ]
+        "links": ["Careers", "Blog"]
+      },
+      {
+        "title": "Social",
+        "links": ["GitHub", "LinkedIn", "Twitter"]
       }
+    ],
+    "socials": [
+      { "label": "GH", "href": "#" },
+      { "label": "LI", "href": "#" },
+      { "label": "TW", "href": "#" }
     ]
   }
 }
