@@ -1,5 +1,6 @@
 name = "rancang"
 main = ".output/server/index.mjs"
+account_id = ""
 compatibility_date = "2025-07-15"
 compatibility_flags = ["nodejs_compat"]
 
