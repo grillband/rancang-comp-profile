@@ -19,6 +19,9 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     adminPassword: process.env.ADMIN_PASSWORD || 'admin123',
+    public: {
+      siteUrl: process.env.SITE_URL || 'http://localhost:3000',
+    },
   },
 
   app: {
@@ -33,13 +36,7 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:title', content: 'rancang.dev — Engineering Your Digital Future' },
         { property: 'og:description', content: 'Rancang.dev Solutions is a premier software development house dedicated to technical mastery, architectural integrity, and forward-thinking innovation.' },
-        { property: 'og:image', content: '/og-image.svg' },
-        { property: 'og:image:width', content: '1200' },
-        { property: 'og:image:height', content: '630' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'rancang.dev — Engineering Your Digital Future' },
-        { name: 'twitter:description', content: 'Rancang.dev Solutions — Engineering Your Digital Future' },
-        { name: 'twitter:image', content: '/og-image.svg' },
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },

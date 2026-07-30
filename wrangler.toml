@@ -1,5 +1,5 @@
 name = "rancang"
-main = "dist/_worker.js/index.js"
+main = ".output/server/index.mjs"
 compatibility_date = "2025-07-15"
 compatibility_flags = ["nodejs_compat"]
 
@@ -11,9 +11,9 @@ id = "a992842f2531437ea6d08e3dff284ecd"
 binding = "UPLOADS_R2"
 bucket_name = "rancang-uploads"
 
-[site]
-bucket = "dist"
-entry-point = "_worker.js"
+[assets]
+directory = ".output/public"
 
 [vars]
 CONTACT_WEBHOOK_URL = ""
+SITE_URL = "https://rancang.dev"

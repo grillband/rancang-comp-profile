@@ -3,11 +3,11 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
+    "build": "node scripts/generate-og.mjs && nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "deploy": "nuxt build && wrangler pages deploy dist",
+    "deploy": "nuxt build && wrangler deploy",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "@iconify-json/mdi": "^1.2.3",
     "@tailwindcss/typography": "^0.5.20",
     "@types/markdown-it": "^14.1.2",
-    "@types/node": "^26.1.2"
+    "@types/node": "^26.1.2",
+    "sharp": "^0.35.3"
   }
 }

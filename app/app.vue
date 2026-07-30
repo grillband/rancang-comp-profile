@@ -30,6 +30,17 @@ function toggleTheme() {
 }
 
 provide('theme', { theme, toggleTheme })
+
+const config = useRuntimeConfig()
+const siteUrl = config.public.siteUrl
+useHead({
+  meta: [
+    { property: 'og:image', content: `${siteUrl}/og-image.png` },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { name: 'twitter:image', content: `${siteUrl}/og-image.png` },
+  ],
+})
 </script>
 
 <style>
