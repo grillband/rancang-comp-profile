@@ -77,15 +77,29 @@
               <InputField v-model="content.nav.logo" label="Logo Text" />
               <InputField v-model="content.nav.cta" label="CTA Button Text" />
             </div>
-            <div class="mt-4">
-              <label class="block text-xs font-medium text-surface-500 uppercase tracking-wider mb-2">Nav Items (comma-separated)</label>
-              <input
-                :value="content.nav.items.join(', ')"
-                @input="content.nav.items = ($event.target as HTMLInputElement).value.split(',').map((s: string) => s.trim()).filter(Boolean)"
-                class="w-full px-4 py-3 bg-surface-50 border border-surface-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30 transition-all"
-              />
+          </EditorCard>
+
+          <EditorCard
+            v-for="(item, i) in content.nav.items"
+            :key="i"
+            :title="`Nav Item ${Number(i) + 1}: ${item.label}`"
+            icon="mdi:link-variant"
+            :removable="content.nav.items.length > 1"
+            @remove="content.nav.items.splice(i, 1)"
+          >
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <InputField v-model="item.label" label="Label" />
+              <InputField v-model="item.href" label="Href" placeholder="#services" />
             </div>
           </EditorCard>
+
+          <button
+            @click="content.nav.items.push({ label: 'New Item', href: '#' })"
+            class="w-full py-3 border-2 border-dashed border-surface-300 rounded-xl text-sm font-medium text-surface-500 hover:border-brand-500 hover:text-brand-600 transition-all flex items-center justify-center gap-2"
+          >
+            <Icon name="mdi:plus-circle-outline" size="18" />
+            Add Nav Item
+          </button>
         </div>
 
         <!-- ============ HERO ============ -->
@@ -310,6 +324,14 @@ const saveStatus = ref<'saved' | 'error' | ''>('')
 // Fetch current content
 const { data: rawContent } = await useFetch<Record<string, any>>('/api/content')
 const content = ref<Record<string, any> | null>(rawContent.value ? JSON.parse(JSON.stringify(rawContent.value)) : null)
+
+// migration: convert legacy string[] nav items to { label, href }[]
+if (content.value?.nav?.items?.length && typeof content.value.nav.items[0] === 'string') {
+  content.value.nav.items = content.value.nav.items.map((s: string) => ({
+    label: s,
+    href: '#' + s.toLowerCase().replace(/\s+/g, '-')
+  }))
+}
 
 const saveContent = async () => {
   saving.value = true
