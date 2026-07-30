@@ -311,6 +311,7 @@
             <TextareaField v-model="content.contact.subheading" label="Section Subheading" :rows="2" class="mt-4" />
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
               <InputField v-model="content.contact.email" label="Email Address" />
+              <InputField v-model="content.contact.phone" label="Phone Number" />
               <InputField v-model="content.contact.submitText" label="Submit Button Text" />
             </div>
             <TextareaField v-model="content.contact.address" label="Office Address" :rows="2" class="mt-4" />
