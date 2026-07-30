@@ -9,11 +9,12 @@
   >
     <div class="px-6 md:px-10 h-20 flex items-center justify-between max-w-[1600px] mx-auto">
       <a href="#" class="flex items-center gap-3 group">
-        <div class="relative w-8 h-8 flex items-center justify-center">
-          <div class="w-8 h-8 rounded-full border" style="border-color: var(--ink)"></div>
-          <div class="absolute w-1.5 h-1.5 rounded-full" style="background: var(--ink)"></div>
-        </div>
-        <span class="text-[15px] font-medium tracking-tight text-ink">{{ content?.nav?.logo || 'rancang.dev' }}</span>
+        <img
+          :src="theme === 'dark' ? '/logo-mark-white.svg' : '/logo.svg'"
+          alt="comp-sh"
+          class="h-6 w-auto group-hover:scale-105 transition-transform duration-500"
+        />
+        <span class="text-[15px] font-medium tracking-tight text-ink">{{ content?.nav?.logo || 'comp-sh' }}</span>
       </a>
 
       <nav class="hidden md:flex items-center gap-10">

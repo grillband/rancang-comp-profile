@@ -2,8 +2,10 @@
   <footer class="px-6 md:px-10 pt-24 pb-10 border-t" :style="{ borderColor: 'var(--line)' }">
     <div class="max-w-[1600px] mx-auto">
       <div class="mb-16 md:mb-24">
-        <div class="font-medium tracking-[-0.055em] leading-[0.85] text-ink select-none" :style="{ fontSize: 'clamp(4rem, 20vw, 22rem)' }">
-          comp<span class="font-serif italic text-ink-2">-sh</span>
+        <div class="flex items-center gap-4 mb-4">
+          <div class="font-medium tracking-[-0.055em] leading-[0.85] text-ink select-none" :style="{ fontSize: 'clamp(2rem, 10vw, 10rem)' }">
+            rancang<span class="font-serif italic text-ink-2">.dev</span>
+          </div>
         </div>
       </div>
 
@@ -41,5 +43,6 @@
 
 <script setup lang="ts">
 defineProps<{ content: any }>()
+const { theme } = inject('theme') as { theme: Ref<'dark' | 'light'> }
 const year = ref(new Date().getFullYear())
 </script>
