@@ -24,8 +24,8 @@
       </div>
     </div>
 
-    <div class="flex-1 flex items-center py-2 md:py-4">
-      <h1 class="font-medium tracking-[-0.045em] leading-[1.0] text-ink" :style="{ fontSize: 'clamp(2rem, 10vw, 10rem)' }">
+    <div class="flex-1 flex items-center justify-between gap-10 py-2 md:py-4">
+      <h1 class="font-medium tracking-[-0.045em] leading-[1.0] text-ink lg:ml-[4vw]" :style="{ fontSize: 'clamp(2rem, 10vw, 10rem)' }">
         <span v-for="(line, i) in (content?.hero?.lines || ['Engineering', 'Digital', 'Futures.'])" :key="i" class="mask-line">
           <span :style="{ transitionDelay: `${0.4 + i * 0.15}s` }" :class="[mountedClass, 'block']">
             <span v-if="i === 1" class="font-serif italic tracking-tight text-ink-2" style="font-weight: 400">{{ line }}</span>
@@ -33,10 +33,22 @@
           </span>
         </span>
       </h1>
+
+      <div :style="{ transitionDelay: '1.3s' }" :class="[mountedClass, 'hero-orb-reveal hidden lg:flex items-center justify-center shrink-0 lg:mr-16 xl:mr-[7vw]']">
+        <div class="relative flex items-center justify-center">
+          <div class="hero-orbit w-[268px] h-[268px] xl:w-[348px] xl:h-[348px] rounded-full border">
+            <span class="hero-orbit-dot"></span>
+          </div>
+          <div class="hero-orbit-rev absolute inset-[46px] rounded-full border">
+            <span class="hero-orbit-dot-rev"></span>
+          </div>
+          <div class="hero-orb-core absolute w-[200px] h-[200px] xl:w-[260px] xl:h-[260px] rounded-full"></div>
+        </div>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 items-end gap-10">
-      <p :style="{ transitionDelay: '0.9s' }" :class="mountedClass" class="text-sm md:text-[15px] leading-relaxed text-ink-2 max-w-md">
+    <div class="grid grid-cols-1 md:grid-cols-3 items-end gap-10 -mt-16 md:-mt-24">
+      <p :class="mountedClass" class="hero-subtext text-sm md:text-[18px] leading-relaxed text-ink-2 max-w-md lg:ml-[4vw]">
         {{ content?.hero?.subtitle || 'We build high-performance software architecture for companies that demand precision.' }}
       </p>
       <div class="hidden md:block"></div>
@@ -78,5 +90,74 @@ onMounted(() => {
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-orb-reveal {
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-subtext {
+  transition: color 0.6s ease;
+}
+
+.hero-orbit {
+  border-color: rgba(10, 10, 10, 0.35);
+  animation: hero-spin 24s linear infinite;
+}
+
+.hero-orbit-rev {
+  border-color: rgba(10, 10, 10, 0.35);
+  animation: hero-spin-rev 18s linear infinite;
+}
+
+.hero-orb-core {
+  background: #FF5722;
+  box-shadow: 0 0 100px 30px rgba(255, 87, 34, 0.3);
+}
+
+[data-theme="dark"] .hero-orbit,
+[data-theme="dark"] .hero-orbit-rev {
+  border-color: rgba(199, 245, 80, 0.45);
+}
+
+[data-theme="dark"] .hero-orb-core {
+  background: #C7F550;
+  box-shadow: 0 0 100px 30px rgba(199, 245, 80, 0.45);
+}
+
+.hero-orbit-dot {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #FF5722;
+  transform: translateX(-50%);
+}
+
+[data-theme="dark"] .hero-orbit-dot {
+  background: #F5F0E8;
+}
+
+.hero-orbit-dot-rev {
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--ink);
+  transform: translateX(-50%);
+}
+
+@keyframes hero-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hero-spin-rev {
+  to { transform: rotate(-360deg); }
 }
 </style>

@@ -152,6 +152,7 @@
           <EditorCard title="Projects Section" icon="mdi:folder-outline">
             <InputField v-model="content.projects.heading" label="Section Heading" />
             <InputField v-model="content.projects.subheading" label="Section Subheading" class="mt-4" />
+            <InputField v-model="content.projects.demosSubheading" label="Demos Subheading" class="mt-4" />
           </EditorCard>
 
           <EditorCard
@@ -166,6 +167,25 @@
               <InputField v-model="project.title" label="Title" />
               <InputField v-model="project.slug" label="Slug (URL path)" placeholder="my-project-slug" />
             </div>
+            <div class="mt-4">
+              <label class="block text-xs font-medium text-surface-500 uppercase tracking-wider mb-2">Type</label>
+              <div class="flex gap-2">
+                <button
+                  v-for="t in ['work', 'demo']"
+                  :key="t"
+                  @click="project.type = t"
+                  :class="[
+                    (project.type || 'work') === t
+                      ? 'bg-brand-600 text-white border-brand-600 shadow-sm'
+                      : 'bg-white text-surface-600 border-surface-200 hover:border-brand-400'
+                  ]"
+                  class="px-4 py-2 rounded-lg text-xs font-medium border transition-all"
+                >
+                  {{ t === 'work' ? 'Work / Portfolio' : 'Demo (Live URL)' }}
+                </button>
+              </div>
+            </div>
+            <InputField v-model="project.liveUrl" label="Live Link (optional)" placeholder="https://..." class="mt-4" />
             <TextareaField v-model="project.description" label="Description (short summary)" :rows="2" class="mt-4" />
             <div class="mt-4">
               <label class="block text-xs font-medium text-surface-500 uppercase tracking-wider mb-2">Tags (comma-separated)</label>
@@ -208,7 +228,7 @@
           </EditorCard>
 
           <button
-            @click="content.projects.items.push({ slug: 'new-project-' + Date.now(), image: '', tags: ['New'], title: 'New Project', description: 'Project description.', details: '## Overview\n\nDetails about the project.' })"
+            @click="content.projects.items.push({ slug: 'new-project-' + Date.now(), type: 'work', liveUrl: '', image: '', tags: ['New'], title: 'New Project', description: 'Project description.', details: '## Overview\n\nDetails about the project.' })"
             class="w-full py-3 border-2 border-dashed border-surface-300 rounded-xl text-sm font-medium text-surface-500 hover:border-brand-500 hover:text-brand-600 transition-all flex items-center justify-center gap-2"
           >
             <Icon name="mdi:plus-circle-outline" size="18" />

@@ -3,7 +3,7 @@
     <div class="max-w-[1600px] mx-auto">
       <div data-scroll-reveal class="grid md:grid-cols-12 gap-10 mb-16">
         <div class="md:col-span-4">
-          <div class="font-mono text-[11px] tracking-[0.2em] uppercase text-muted-ink mb-4">[ Section 05 &mdash; Testimonials ]</div>
+          <div class="font-mono text-[11px] tracking-[0.2em] uppercase text-muted-ink mb-4">[ Section 06 &mdash; Testimonials ]</div>
         </div>
         <div class="md:col-span-8">
           <h2 class="font-medium tracking-[-0.03em] leading-[0.95] text-ink" :style="{ fontSize: 'clamp(2.2rem, 5vw, 4.8rem)' }">

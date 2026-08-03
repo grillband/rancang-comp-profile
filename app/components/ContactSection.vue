@@ -2,7 +2,7 @@
   <section id="contact" class="px-6 md:px-10 py-24 md:py-36 border-t" :style="{ borderColor: 'var(--line)' }">
     <div class="max-w-[1600px] mx-auto grid md:grid-cols-12 gap-12">
       <div data-scroll-reveal class="md:col-span-5">
-        <div class="font-mono text-[11px] tracking-[0.2em] uppercase text-muted-ink mb-6">[ Section 06 &mdash; Contact ]</div>
+        <div class="font-mono text-[11px] tracking-[0.2em] uppercase text-muted-ink mb-6">[ Section 07 &mdash; Contact ]</div>
         <h2 class="font-medium tracking-[-0.035em] leading-[0.9] text-ink" :style="{ fontSize: 'clamp(2.6rem, 7vw, 6rem)' }">
           {{ content?.contact?.heading || "Let's build" }}<br/>
           <span class="font-serif italic text-ink-2">{{ content?.contact?.heading2 || 'something great.' }}</span>

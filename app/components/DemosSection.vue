@@ -1,26 +1,28 @@
 <template>
-  <section id="work" class="px-6 md:px-10 py-24 md:py-36" :style="{ borderColor: 'var(--line)' }">
+  <section id="demo" v-if="demoItems.length" class="px-6 md:px-10 py-24 md:py-36" :style="{ borderColor: 'var(--line)' }">
     <div class="max-w-[1600px] mx-auto">
       <div data-scroll-reveal class="grid md:grid-cols-12 gap-10 mb-16">
         <div class="md:col-span-4">
-          <div class="font-mono text-[11px] tracking-[0.2em] uppercase text-muted-ink mb-4">[ Section 03 &mdash; Selected Work ]</div>
+          <div class="font-mono text-[11px] tracking-[0.2em] uppercase text-muted-ink mb-4">[ Section 04 &mdash; Live Demos ]</div>
         </div>
         <div class="md:col-span-8">
           <h2 class="font-medium tracking-[-0.03em] leading-[0.95] text-ink" :style="{ fontSize: 'clamp(2.2rem, 5vw, 4.8rem)' }">
-            Projects we're<span class="font-serif italic text-ink-2"> proud of.</span>
+            Try our<span class="font-serif italic text-ink-2"> demos.</span>
           </h2>
-          <p class="mt-6 max-w-lg text-ink-2 leading-relaxed">{{ content?.projects?.subheading || 'A selection of our technical achievements.' }}</p>
+          <p class="mt-6 max-w-lg text-ink-2 leading-relaxed">{{ props.content?.projects?.demosSubheading || 'Live applications and prototypes you can explore right now.' }}</p>
         </div>
       </div>
 
       <div class="grid md:grid-cols-2 gap-4 md:gap-6">
-        <NuxtLink
-          v-for="(project, index) in workItems"
+        <a
+          v-for="(project, index) in demoItems"
           :key="project.slug"
-          :to="`/project/${project.slug}`"
+          :href="project.liveUrl"
+          target="_blank"
+          rel="noopener noreferrer"
           data-scroll-reveal
           :data-scroll-delay="index * 80"
-          class="group relative p-6 md:p-8 rounded-2xl border"
+          class="group relative p-6 md:p-8 rounded-2xl border block"
           :style="{ borderColor: 'var(--line)', background: 'var(--bg-elev)' }"
         >
           <div class="flex items-start justify-between mb-4">
@@ -28,18 +30,9 @@
               <div class="font-mono text-[11px] tracking-widest text-muted-ink mb-1">{{ project.year }}</div>
               <div class="font-mono text-[11px] tracking-widest text-muted-ink">{{ project.client }}</div>
             </div>
-            <div class="flex items-center gap-3">
-              <button
-                v-if="project.liveUrl"
-                @click.prevent.stop="openLive(project.liveUrl)"
-                class="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 text-[10px] font-medium tracking-widest uppercase rounded-full border hover:bg-ink hover:text-bg transition-colors duration-300"
-                :style="{ borderColor: 'var(--line)' }"
-              >
-                View Live
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </button>
-              <span class="w-10 h-10 rounded-full border flex items-center justify-center text-[11px] font-mono group-hover:bg-ink group-hover:text-bg transition-colors duration-300" :style="{ borderColor: 'var(--line)' }">&rarr;</span>
-            </div>
+            <span class="w-10 h-10 rounded-full border flex items-center justify-center text-[11px] font-mono group-hover:bg-ink group-hover:text-bg transition-colors duration-300" :style="{ borderColor: 'var(--line)' }">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </span>
           </div>
 
           <div class="relative aspect-[16/10] rounded-xl overflow-hidden mb-6" :style="{ background: 'var(--bg)' }">
@@ -64,16 +57,23 @@
 
           <h3 class="text-2xl font-medium tracking-[-0.02em] text-ink mb-2">{{ project.title }}</h3>
           <p class="text-ink-2 text-[14px] leading-relaxed">{{ project.description }}</p>
-        </NuxtLink>
+
+          <div class="mt-6">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-medium tracking-[0.12em] uppercase text-bg transition-colors duration-300" :style="{ background: 'var(--ink)' }">
+              Open Live Demo
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </span>
+          </div>
+        </a>
       </div>
 
       <div class="mt-12 text-center">
         <NuxtLink
-          to="/project"
+          to="/demos"
           class="inline-flex items-center gap-2 px-6 py-3 rounded-full border text-[11px] font-medium tracking-[0.12em] uppercase text-ink hover:bg-ink hover:text-bg transition-all duration-300"
           :style="{ borderColor: 'var(--line)' }"
         >
-          View All Projects
+          View All Demos
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
           </svg>
@@ -86,9 +86,5 @@
 <script setup lang="ts">
 const props = defineProps<{ content: any }>()
 
-const workItems = computed(() => (props.content?.projects?.items || []).filter((p: any) => (p.type || 'work') === 'work'))
-
-function openLive(url: string) {
-  window.open(url, '_blank', 'noopener,noreferrer')
-}
+const demoItems = computed(() => (props.content?.projects?.items || []).filter((p: any) => (p.type || 'work') === 'demo'))
 </script>

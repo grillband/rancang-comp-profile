@@ -64,7 +64,7 @@
 
         <div :class="[fadeClass, 'nav-fade']" :style="{ transitionDelay: '0.42s' }">
           <a
-            class="hidden md:inline-flex items-center gap-2 pl-5 pr-2 py-2 rounded-full bg-ink text-[11px] font-medium tracking-[0.12em] uppercase hover:-translate-y-[4px] cursor-pointer group transition-all duration-500"
+            class="hidden md:inline-flex items-center gap-2 pl-5 pr-2 py-2 rounded-full bg-ink text-[11px] font-medium tracking-[0.12em] uppercase hover:-translate-y-[4px] cursor-pointer group transition-transform duration-500"
             :style="{ color: 'var(--bg)' }"
             @click.prevent="scrollTo('#contact')"
           >
@@ -110,7 +110,7 @@
           {{ item.label }}
         </a>
         <a
-          class="mt-3 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-ink text-xs tracking-widest uppercase cursor-pointer group transition-all duration-500"
+          class="mt-3 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-ink text-xs tracking-widest uppercase cursor-pointer group transition-transform duration-500"
           :style="{ color: 'var(--bg)' }"
           @click.prevent="scrollTo('#contact')"
         >

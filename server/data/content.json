@@ -5,6 +5,7 @@
       { "label": "Studio", "href": "#studio" },
       { "label": "Services", "href": "#services" },
       { "label": "Work", "href": "#work" },
+      { "label": "Demo", "href": "#demo" },
       { "label": "Contact", "href": "#contact" }
     ],
     "cta": "Start a Project"
@@ -56,12 +57,15 @@
   },
   "projects": {
     "subheading": "A selection of our technical achievements.",
+    "demosSubheading": "Live applications and prototypes you can explore right now.",
     "items": [
       {
         "slug": "fintech-dashboard",
+        "type": "work",
         "year": "2024",
         "client": "FinSecure Capital",
         "image": "/uploads/fintech-dashboard.webp",
+        "liveUrl": "",
         "tags": ["React", "Node.js"],
         "title": "Fintech Dashboard",
         "description": "A high-frequency trading interface built for institutional investors, processing millions of transactions per second with sub-millisecond latency.",
@@ -69,9 +73,11 @@
       },
       {
         "slug": "healthtech-app",
+        "type": "work",
         "year": "2024",
         "client": "MedSync Labs",
         "image": "/uploads/healthtech-app.webp",
+        "liveUrl": "",
         "tags": ["Swift", "Kotlin", "GCP"],
         "title": "HealthTech App",
         "description": "A secure, HIPAA-compliant patient management system providing real-time telemetry data to healthcare professionals globally.",
@@ -79,9 +85,11 @@
       },
       {
         "slug": "ecommerce-platform",
+        "type": "work",
         "year": "2023",
         "client": "RetailMax",
         "image": "/uploads/ecommerce-platform.webp",
+        "liveUrl": "https://shop.retailmax.example.com",
         "tags": ["Next.js", "Stripe", "PostgreSQL"],
         "title": "E-Commerce Platform",
         "description": "A high-throughput e-commerce engine handling 50k+ concurrent users during flash sales with real-time inventory across 10 warehouses.",
@@ -89,13 +97,27 @@
       },
       {
         "slug": "analytics-engine",
+        "type": "work",
         "year": "2023",
         "client": "DataPulse Inc.",
         "image": "/uploads/analytics-engine.webp",
+        "liveUrl": "",
         "tags": ["Python", "Apache Kafka", "D3.js"],
         "title": "Analytics Engine",
         "description": "A real-time data analytics platform processing 10TB+ of daily event data with custom visualization dashboards for enterprise clients.",
         "details": "## Overview\n\nA real-time data analytics platform for enterprise clients processing massive data volumes.\n\n## Key Features\n\n- 10TB+ daily data processing pipeline\n- Custom dashboard builder with drag-and-drop\n- Real-time anomaly detection with ML\n- Multi-tenant architecture with RBAC\n\n## Tech Stack\n\n- **Backend:** Python, Apache Kafka, Spark\n- **Frontend:** React, D3.js, WebGL\n- **Infrastructure:** GCP, BigQuery, Dataflow"
+      },
+      {
+        "slug": "interactive-dashboard",
+        "type": "demo",
+        "year": "2025",
+        "client": "Rancang Labs",
+        "image": "/uploads/fintech-dashboard.webp",
+        "liveUrl": "https://demos.rancang.dev/interactive-dashboard",
+        "tags": ["React", "D3.js", "WebSocket"],
+        "title": "Interactive Dashboard",
+        "description": "A live playground demonstrating real-time data streaming and advanced charting with 50+ technical indicators.",
+        "details": "## Overview\n\nAn interactive demo showing real-time market data streaming via WebSocket with advanced charting capabilities.\n\n## Key Features\n\n- Real-time data streaming via WebSocket\n- Advanced charting with 50+ technical indicators\n- One-click trade execution across multiple exchanges\n\n## Tech Stack\n\n- **Frontend:** React, TypeScript, D3.js\n- **Backend:** Node.js, Express, WebSocket"
       }
     ]
   },

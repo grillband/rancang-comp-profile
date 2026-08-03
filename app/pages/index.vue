@@ -4,6 +4,7 @@
     <MarqueeSection :content="content" />
     <ServicesSection :content="content" />
     <ProjectsSection :content="content" />
+    <DemosSection :content="content" />
     <StatsSection :content="content" />
     <ProcessSection :content="content" />
     <TestimonialsSection :content="content" />

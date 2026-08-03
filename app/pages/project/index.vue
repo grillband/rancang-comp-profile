@@ -11,15 +11,22 @@
               All<span class="font-serif italic text-ink-2"> projects.</span>
             </h1>
             <p class="mt-6 max-w-lg text-ink-2 leading-relaxed">{{ content?.projects?.subheading || '' }}</p>
+            <NuxtLink
+              to="/demos"
+              class="mt-6 inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.12em] uppercase text-ink-2 hover:text-ink link-underline transition-colors"
+            >
+              View Live Demos
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </NuxtLink>
           </div>
         </div>
 
         <div class="grid md:grid-cols-2 gap-4 md:gap-6">
           <NuxtLink
-            v-for="(project, index) in (content?.projects?.items || [])"
+            v-for="(project, index) in workItems"
             :key="index"
             :to="`/project/${project.slug}`"
-            class="group relative p-6 md:p-8 rounded-2xl border transition-all duration-500"
+            class="group relative p-6 md:p-8 rounded-2xl border"
             :style="{ borderColor: 'var(--line)', background: 'var(--bg-elev)' }"
           >
             <div class="flex items-start justify-between mb-4">
@@ -61,6 +68,8 @@
 
 <script setup lang="ts">
 const { data: content } = await useFetch('/api/content')
+
+const workItems = computed(() => (content.value?.projects?.items || []).filter((p: any) => (p.type || 'work') === 'work'))
 
 useHead({
   title: 'All Projects — rancang.dev',

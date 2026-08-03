@@ -43,6 +43,21 @@
             {{ project.title }}
           </h1>
 
+          <a
+            v-if="project.liveUrl"
+            data-scroll-reveal
+            :href="project.liveUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border text-[11px] font-medium tracking-[0.12em] uppercase text-ink hover:bg-ink hover:text-bg transition-all duration-300 mb-8"
+            :style="{ borderColor: 'var(--line)' }"
+          >
+            Visit Live Site
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+            </svg>
+          </a>
+
           <div data-scroll-reveal class="text-ink-2 text-base leading-relaxed max-w-2xl">
             <div v-if="project.details" v-html="renderedDetails"></div>
             <p v-else>{{ project.description }}</p>
